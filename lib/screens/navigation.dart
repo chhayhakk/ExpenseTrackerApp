@@ -1,5 +1,6 @@
 import 'package:expensetracker/screens/expense.dart';
 import 'package:expensetracker/screens/home.dart';
+import 'package:expensetracker/screens/profile.dart';
 import 'package:get/get.dart';
 import 'package:flutter/material.dart';
 
@@ -11,12 +12,10 @@ class Navigation extends StatefulWidget {
 }
 
 class _NavigationState extends State<Navigation> {
-  // Define _currentIndex as an observable inside the State class
   var _currentIndex = 0.obs;
 
-  // OnTap method to update current index
-  void _onItemTapped(int index) {
-    _currentIndex.value = index; // Update the index value
+  void onItemTapped(int index) {
+    _currentIndex.value = index;
   }
 
   @override
@@ -26,10 +25,10 @@ class _NavigationState extends State<Navigation> {
       bottomNavigationBar: Obx(() {
         return BottomNavigationBar(
           backgroundColor: Colors.white,
-          currentIndex: _currentIndex.value, // Use the reactive value
-          selectedItemColor: const Color(0xFF1C41F8),
+          currentIndex: _currentIndex.value,
+          selectedItemColor: const Color(0xFF001E42),
           type: BottomNavigationBarType.fixed,
-          onTap: _onItemTapped,
+          onTap: onItemTapped,
           items: const <BottomNavigationBarItem>[
             BottomNavigationBarItem(
               icon: Icon(Icons.home),
@@ -53,7 +52,7 @@ class _NavigationState extends State<Navigation> {
           case 1:
             return ExpenseScreen();
           case 2:
-            return Center(child: Text('Profile Screen'));
+            return Profile();
           default:
             return Home();
         }

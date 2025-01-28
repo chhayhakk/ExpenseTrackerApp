@@ -1,4 +1,5 @@
 import 'package:dio/dio.dart';
+import 'package:expensetracker/controllers/usercontroller.dart';
 import 'package:expensetracker/screens/home.dart';
 import 'package:expensetracker/screens/navigation.dart';
 import 'package:expensetracker/screens/register.dart';
@@ -13,13 +14,22 @@ class Signin extends StatefulWidget {
   State<Signin> createState() => _SigninState();
 }
 
-String? message;
-bool _obsecureTextValue = true;
-IconData _openCloseEyeIcon = Icons.remove_red_eye_outlined;
-
-GlobalKey<FormState> _formKey = GlobalKey<FormState>();
-
 class _SigninState extends State<Signin> {
+  final UserController userController = Get.put(UserController());
+  final TextEditingController emailController = TextEditingController();
+  final TextEditingController passwordController = TextEditingController();
+  String? message;
+  bool _obsecureTextValue = true;
+  IconData _openCloseEyeIcon = Icons.remove_red_eye_outlined;
+
+  GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+  @override
+  void dispose() {
+    emailController.dispose();
+    passwordController.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -142,20 +152,19 @@ class _SigninState extends State<Signin> {
                                     if (response.containsKey('token')) {
                                       final profileData =
                                           await apiService.getProfile();
-                                      print('Profile Data: $profileData');
+                                      userController
+                                          .setUserProfile(profileData);
                                       Get.to(() => Navigation());
                                     } else if (response.containsKey('error')) {
                                       setState(() {
                                         message = response['error'];
                                       });
-                                      // print(
-                                      //     'Login failed: ${response['error']}');
                                     }
                                   } catch (e) {
                                     setState(() {
                                       message = 'Sign in failed: $e';
                                     });
-                                    // print(message);
+                                    print(message);
                                   }
                                 }
                               },

@@ -1,6 +1,7 @@
 import 'package:dio/dio.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:expensetracker/utils/api_config.dart';
+import 'package:jwt_decoder/jwt_decoder.dart';
 
 class ApiServiceExpense {
   final Dio _dio;
@@ -13,7 +14,7 @@ class ApiServiceExpense {
   Future<Map<String, dynamic>> fetchExpense() async {
     try {
       final token = await secureStorage.read(key: 'token');
-      if (token == null) {
+      if (JwtDecoder.isExpired(token!)) {
         return {'error': 'User is not logged in'};
       }
 
@@ -25,7 +26,7 @@ class ApiServiceExpense {
           ));
 
       if (response.statusCode == 200) {
-        return response.data;
+        return {'expenses': response.data};
       } else {
         return {'error': response.data['error']};
       }
@@ -35,20 +36,26 @@ class ApiServiceExpense {
   }
 
   Future<Map<String, dynamic>> addExpense(
-      String description, double amount, String date) async {
+      double amount, String date, String category, String notes) async {
     try {
       final token = await secureStorage.read(key: 'token');
-      if (token == null) {
+      if (JwtDecoder.isExpired(token!)) {
         return {'error': 'User is not logged in'};
       }
 
       final response = await _dio.post('$baseUrl/expenses',
           options: Options(headers: {
             'Authorization': 'Bearer $token',
-          }));
+          }),
+          data: {
+            'amount': amount,
+            'category': category,
+            'date': date,
+            'notes': notes,
+          });
 
       if (response.statusCode == 201) {
-        return {'message': 'Expenses added successfully'};
+        return response.data;
       } else {
         return {'error': response.data['error'] ?? 'Unknown error occurred'};
       }

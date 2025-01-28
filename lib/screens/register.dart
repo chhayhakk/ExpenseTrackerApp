@@ -11,21 +11,20 @@ class Register extends StatefulWidget {
   State<Register> createState() => _RegisterState();
 }
 
-bool _obsecureTextValue = true;
-IconData _openCloseEyeIcon = Icons.remove_red_eye_outlined;
-
-bool _obsecureTextValue_forConfirm = true;
-IconData _openCloseEyeIcon_forConfirm = Icons.remove_red_eye_outlined;
-GlobalKey<FormState> _formKey = GlobalKey<FormState>();
-
-String? message;
-
-final TextEditingController emailController = TextEditingController();
-final TextEditingController passwordController = TextEditingController();
-final TextEditingController confirmController = TextEditingController();
-final TextEditingController usernameController = TextEditingController();
-
 class _RegisterState extends State<Register> {
+  bool _obsecureTextValue = true;
+  IconData _openCloseEyeIcon = Icons.remove_red_eye_outlined;
+
+  bool _obsecureTextValue_forConfirm = true;
+  IconData _openCloseEyeIcon_forConfirm = Icons.remove_red_eye_outlined;
+  GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+
+  String? message;
+
+  final TextEditingController emailController = TextEditingController();
+  final TextEditingController passwordController = TextEditingController();
+  final TextEditingController confirmController = TextEditingController();
+  final TextEditingController usernameController = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -223,7 +222,11 @@ class _RegisterState extends State<Register> {
                                     final response = await apiService.signup(
                                         username, email, password);
                                     if (response.containsKey('message')) {
-                                      Get.to(() => Signin());
+                                      emailController.clear();
+                                      usernameController.clear();
+                                      passwordController.clear();
+                                      confirmController.clear();
+                                      Get.off(() => Signin());
                                     } else if (response.containsKey('error')) {
                                       setState(() {
                                         message = response['error'];

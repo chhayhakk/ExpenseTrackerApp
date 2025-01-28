@@ -28,6 +28,7 @@ void main() async {
   ApiServiceUser apiServiceUser = ApiServiceUser(Dio());
   bool isLoggedIn = await apiServiceUser.isLoggedIn();
   await Future.delayed(Duration(seconds: 2));
+
   runApp(MyApp(isLoggedIn));
   SystemChrome.setEnabledSystemUIMode(
     SystemUiMode.manual,

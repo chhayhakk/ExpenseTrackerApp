@@ -36,6 +36,7 @@ dependencies:
   flutter_secure_storage: ^9.2.4
   jwt_decoder: ^2.0.1
   table_calendar: ^3.2.0
+  quickalert:
 
 
   # The following adds the Cupertino Icons font to your application.

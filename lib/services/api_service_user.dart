@@ -49,11 +49,16 @@ class ApiServiceUser {
         final token = response.data['token'];
         final refreshToken = response.data['refreshToken'];
 
+        print('Token: $token');
+        print('Refresh Token: $refreshToken');
+
         await secureStorage.write(key: 'token', value: token);
         await secureStorage.write(key: 'refreshToken', value: refreshToken);
         return response.data;
+      } else if (response.statusCode == 400) {
+        return {'error': 'Invalid Credential'};
       } else {
-        throw Exception('Failed to login: ${response.statusCode}');
+        throw Exception('Something went wrong');
       }
     } catch (e) {
       throw Exception('An error occurred: $e');
@@ -62,8 +67,8 @@ class ApiServiceUser {
 
   Future<Map<String, dynamic>> getProfile() async {
     final token = await secureStorage.read(key: 'token');
-
-    if (token == null || JwtDecoder.isExpired(token)) {
+    bool isExpired = JwtDecoder.isExpired(token!);
+    if (isExpired) {
       throw Exception('No token available, please login first');
     }
     try {
