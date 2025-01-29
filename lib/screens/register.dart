@@ -47,7 +47,7 @@ class _RegisterState extends State<Register> {
                   style: TextStyle(
                     color: Colors.black,
                     fontWeight: FontWeight.bold,
-                    fontSize: 32,
+                    fontSize: 28,
                   ),
                 ),
               ),

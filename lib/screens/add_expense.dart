@@ -37,8 +37,6 @@ class _AddExpenseState extends State<AddExpense> {
 
   void _updateDateField() {
     if (_selectedDay != null) {
-      // dateController.text =
-      //     '${_selectedDay!.year}-${_selectedDay!.month.toString().padLeft(2, '0')}-${_selectedDay!.day}';
       final DateFormat formatter = DateFormat('MMM dd, yyyy');
       dateController.text = formatter.format(_selectedDay!);
     }

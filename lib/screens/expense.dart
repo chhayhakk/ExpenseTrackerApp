@@ -299,8 +299,8 @@ class _ExpenseScreenState extends State<ExpenseScreen> {
                             final date = expense['date'];
                             final expenseDate = _parseDate(date);
 
-                            final formattedDate = DateFormat('MMM dd, yyyy')
-                                .format(expenseDate); // Format date
+                            final formattedDate =
+                                DateFormat('MMM dd, yyyy').format(expenseDate);
 
                             if (_selectList != 'All') {
                               final selectedMonthIndex =

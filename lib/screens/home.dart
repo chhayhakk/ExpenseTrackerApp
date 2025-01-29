@@ -118,21 +118,21 @@ class _HomeState extends State<Home> {
   Color _getIconColor(String category) {
     switch (category) {
       case 'Entertainment':
-        return Colors.blue;
+        return Colors.blue.shade900;
       case 'Food':
-        return Colors.green;
+        return Colors.green.shade900;
       case 'Electricity':
-        return Colors.yellow;
+        return Colors.yellow.shade900;
       case 'Medical':
-        return Colors.purple;
+        return Colors.purple.shade900;
       case 'Shopping':
-        return Colors.pink;
+        return Colors.pink.shade900;
       case 'Housing':
-        return Colors.brown;
+        return Colors.brown.shade900;
       case 'Education':
-        return Colors.red;
+        return Colors.red.shade900;
       case 'Insurance':
-        return Colors.orange;
+        return Colors.orange.shade900;
       default:
         return Colors.black;
     }
@@ -316,14 +316,14 @@ class _HomeState extends State<Home> {
                                               color:
                                                   Colors.grey.withOpacity(0.1),
                                             ),
-                                            child: Center(
+                                            child: const Center(
                                                 child: Icon(
                                               Icons.arrow_upward,
                                               color: Colors.white,
                                               size: 15,
                                             )),
                                           ),
-                                          Text(
+                                          const Text(
                                             'Expenses',
                                             style: TextStyle(
                                               color: Colors.white,
@@ -335,7 +335,7 @@ class _HomeState extends State<Home> {
                                       ),
                                       Text(
                                         '\$${totalAmountExpense}',
-                                        style: TextStyle(
+                                        style: const TextStyle(
                                           color: Colors.white,
                                           fontWeight: FontWeight.w600,
                                           fontSize: 20,
