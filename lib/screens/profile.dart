@@ -1,6 +1,6 @@
 import 'package:dio/dio.dart';
+import 'package:expensetracker/controllers/usercontroller.dart';
 import 'package:expensetracker/screens/empty.dart';
-import 'package:expensetracker/screens/home.dart';
 import 'package:expensetracker/screens/signin.dart';
 import 'package:expensetracker/services/api_service_user.dart';
 import 'package:flutter/material.dart';
@@ -116,7 +116,7 @@ Future<void> _logout(BuildContext context) async {
 final List<Map<String, dynamic>> _NavigationListItem = [
   {
     'icon': Icons.person_outline,
-    'title': 'Your profile',
+    'title': 'My Account',
   },
   {
     'icon': Icons.settings_outlined,
@@ -143,6 +143,8 @@ final List<Map<String, dynamic>> _NavigationListItem = [
 class _ProfileState extends State<Profile> {
   @override
   Widget build(BuildContext context) {
+    UserController userController = Get.put(UserController());
+    final userData = userController.userProfile;
     return Scaffold(
       backgroundColor: Colors.grey.shade100,
       body: SingleChildScrollView(
@@ -210,7 +212,7 @@ class _ProfileState extends State<Profile> {
               ],
             ),
             Text(
-              'Kourk Chhay Hak',
+              userData['username'],
               style: TextStyle(
                 color: Colors.black,
                 fontWeight: FontWeight.w500,
@@ -233,7 +235,7 @@ class _ProfileState extends State<Profile> {
                               'Log out') {
                             await _logout(context);
                           } else if (_NavigationListItem[index]['title'] ==
-                              'Your Profile') {
+                              'My Account') {
                             Get.to(() => Empty());
                           } else if (_NavigationListItem[index]['title'] ==
                               'Settings') {

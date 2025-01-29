@@ -1,9 +1,9 @@
 import 'package:dio/dio.dart';
 import 'package:expensetracker/controllers/expensecontroller.dart';
-import 'package:expensetracker/screens/navigation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:expensetracker/services/api_service_user.dart';
+import 'package:intl/intl.dart';
 
 import '../controllers/usercontroller.dart';
 
@@ -447,23 +447,23 @@ class _HomeState extends State<Home> {
                         Padding(
                           padding: const EdgeInsets.only(left: 20, right: 20),
                           child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            mainAxisAlignment: MainAxisAlignment.start,
                             children: [
                               Text(
-                                'Latest Entries',
+                                'Recent Entries',
                                 style: TextStyle(
                                   color: Colors.black,
                                   fontWeight: FontWeight.w600,
                                   fontSize: 18,
                                 ),
                               ),
-                              InkWell(
-                                onTap: () {},
-                                child: Text(
-                                  'See all',
-                                  style: TextStyle(color: Colors.grey.shade600),
-                                ),
-                              ),
+                              // InkWell(
+                              //   onTap: () {},
+                              //   child: Text(
+                              //     'See all',
+                              //     style: TextStyle(color: Colors.grey.shade600),
+                              //   ),
+                              // ),
                             ],
                           ),
                         ),
@@ -483,10 +483,20 @@ class _HomeState extends State<Home> {
                                 ? 3
                                 : expenseController.expenses.length,
                             itemBuilder: (context, index) {
-                              final sortedExpenses = expenseController.expenses
-                                  .toList()
-                                ..sort((a, b) => DateTime.parse(b['date'])
-                                    .compareTo(DateTime.parse(a['date'])));
+                              final sortedExpenses =
+                                  expenseController.expenses.toList()
+                                    ..sort((a, b) {
+                                      // Parse the date strings to DateTime objects using DateFormat
+                                      DateTime parseDate(String date) {
+                                        final formatter = DateFormat(
+                                            'MMM dd, yyyy'); // "Jan 28, 2025" format
+                                        return formatter.parse(date);
+                                      }
+
+                                      // Compare the dates in descending order
+                                      return parseDate(b['date'])
+                                          .compareTo(parseDate(a['date']));
+                                    });
                               final expense = sortedExpenses[index];
                               return Padding(
                                 padding: EdgeInsets.only(

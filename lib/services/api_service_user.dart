@@ -26,7 +26,6 @@ class ApiServiceUser {
       });
 
       if (response.statusCode == 201) {
-        print("User registered successfully");
         if (response.data is String) {
           return {'message': response.data};
         }
@@ -49,8 +48,8 @@ class ApiServiceUser {
         final token = response.data['token'];
         final refreshToken = response.data['refreshToken'];
 
-        print('Token: $token');
-        print('Refresh Token: $refreshToken');
+        // print('Token: $token');
+        // print('Refresh Token: $refreshToken');
 
         await secureStorage.write(key: 'token', value: token);
         await secureStorage.write(key: 'refreshToken', value: refreshToken);
