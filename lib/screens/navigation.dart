@@ -48,13 +48,13 @@ class _NavigationState extends State<Navigation> {
       body: Obx(() {
         switch (_currentIndex.value) {
           case 0:
-            return Home();
+            return const Home();
           case 1:
-            return ExpenseScreen();
+            return const ExpenseScreen();
           case 2:
-            return Profile();
+            return const Profile();
           default:
-            return Home();
+            return const Home();
         }
       }),
     );

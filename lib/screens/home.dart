@@ -457,13 +457,6 @@ class _HomeState extends State<Home> {
                                   fontSize: 18,
                                 ),
                               ),
-                              // InkWell(
-                              //   onTap: () {},
-                              //   child: Text(
-                              //     'See all',
-                              //     style: TextStyle(color: Colors.grey.shade600),
-                              //   ),
-                              // ),
                             ],
                           ),
                         ),

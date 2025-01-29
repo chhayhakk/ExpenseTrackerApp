@@ -119,7 +119,7 @@ class _SigninState extends State<Signin> {
                                 borderSide: BorderSide.none,
                               )),
                         ),
-                        Align(
+                        const Align(
                           alignment: Alignment.centerRight,
                           child: Text(
                             'Forget Password?',
@@ -136,7 +136,7 @@ class _SigninState extends State<Signin> {
                           height: 60,
                           child: ElevatedButton(
                               style: ElevatedButton.styleFrom(
-                                  backgroundColor: Color(0xFF1C40F7),
+                                  backgroundColor: const Color(0xFF1C40F7),
                                   shape: RoundedRectangleBorder(
                                     borderRadius: BorderRadius.circular(15),
                                   )),

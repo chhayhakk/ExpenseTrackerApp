@@ -98,7 +98,7 @@ class _AddExpenseState extends State<AddExpense> {
                       weekdayStyle: TextStyle(
                           color: Colors.grey.shade400,
                           fontWeight: FontWeight.bold)),
-                  calendarStyle: CalendarStyle(
+                  calendarStyle: const CalendarStyle(
                     defaultTextStyle: TextStyle(fontWeight: FontWeight.bold),
                     weekendTextStyle: TextStyle(
                         color: Colors.red, fontWeight: FontWeight.bold),
@@ -322,7 +322,7 @@ class _AddExpenseState extends State<AddExpense> {
                       ),
                       TextFormField(
                         controller: noteController,
-                        maxLines: 5,
+                        maxLines: 4,
                         decoration: InputDecoration(
                             hintStyle: TextStyle(color: Colors.grey.shade400),
                             fillColor: Colors.white,

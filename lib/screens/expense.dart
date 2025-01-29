@@ -168,13 +168,12 @@ class _ExpenseScreenState extends State<ExpenseScreen> {
                 children: [
                   Column(
                     children: [
-                      Padding(
-                        padding:
-                            const EdgeInsets.only(left: 20, right: 20, top: 50),
+                      const Padding(
+                        padding: EdgeInsets.only(left: 20, right: 20, top: 50),
                         child: Stack(
                           children: [
                             Padding(
-                              padding: const EdgeInsets.only(top: 10),
+                              padding: EdgeInsets.only(top: 10),
                               child: Align(
                                 alignment: Alignment.center,
                                 child: Text(
@@ -191,7 +190,8 @@ class _ExpenseScreenState extends State<ExpenseScreen> {
                         ),
                       ),
                       Container(
-                        margin: EdgeInsets.only(left: 20, right: 20, top: 10),
+                        margin:
+                            const EdgeInsets.only(left: 20, right: 20, top: 10),
                         width: double.infinity,
                         height: 150,
                         decoration: BoxDecoration(
@@ -203,7 +203,7 @@ class _ExpenseScreenState extends State<ExpenseScreen> {
                           child: Container(
                             width: double.infinity,
                             child: TableCalendar(
-                              daysOfWeekStyle: DaysOfWeekStyle(
+                              daysOfWeekStyle: const DaysOfWeekStyle(
                                 weekdayStyle: TextStyle(
                                     color: Colors.black,
                                     fontWeight: FontWeight.bold),
@@ -225,22 +225,18 @@ class _ExpenseScreenState extends State<ExpenseScreen> {
                               },
                               calendarFormat: CalendarFormat.week,
                               startingDayOfWeek: StartingDayOfWeek.monday,
-                              headerStyle: HeaderStyle(
+                              headerStyle: const HeaderStyle(
                                 formatButtonVisible: false,
                                 titleCentered: true,
                                 leftChevronMargin: EdgeInsets.only(left: 60),
                                 rightChevronMargin: EdgeInsets.only(right: 60),
                               ),
-                              calendarStyle: CalendarStyle(
+                              calendarStyle: const CalendarStyle(
                                 weekendTextStyle: TextStyle(color: Colors.red),
                                 holidayTextStyle:
                                     TextStyle(color: Colors.green),
                                 todayDecoration: BoxDecoration(
                                   color: Color(0xFF073063),
-                                  shape: BoxShape.circle,
-                                ),
-                                selectedDecoration: BoxDecoration(
-                                  color: Colors.redAccent,
                                   shape: BoxShape.circle,
                                 ),
                                 todayTextStyle: TextStyle(color: Colors.white),
@@ -265,7 +261,7 @@ class _ExpenseScreenState extends State<ExpenseScreen> {
                                     filled: true,
                                     fillColor: Colors.white,
                                     isDense: true,
-                                    contentPadding: EdgeInsets.symmetric(
+                                    contentPadding: const EdgeInsets.symmetric(
                                         horizontal: 8, vertical: 8),
                                     border: OutlineInputBorder(
                                       borderSide: BorderSide.none,
@@ -291,7 +287,7 @@ class _ExpenseScreenState extends State<ExpenseScreen> {
                           ),
                         ),
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: 20,
                       ),
                       Container(
@@ -335,7 +331,7 @@ class _ExpenseScreenState extends State<ExpenseScreen> {
                                       ),
                                       child: Text(
                                         date,
-                                        style: TextStyle(
+                                        style: const TextStyle(
                                           color: Colors.black,
                                           fontWeight: FontWeight.w600,
                                           fontSize: 15,
@@ -344,7 +340,7 @@ class _ExpenseScreenState extends State<ExpenseScreen> {
                                     ),
                                     ...expenses.map((expense) {
                                       return Padding(
-                                        padding: EdgeInsets.only(
+                                        padding: const EdgeInsets.only(
                                             right: 10, left: 10, bottom: 5),
                                         child: Card(
                                           shape: RoundedRectangleBorder(
@@ -353,11 +349,12 @@ class _ExpenseScreenState extends State<ExpenseScreen> {
                                           ),
                                           color: Colors.white,
                                           child: ListTile(
-                                            contentPadding: EdgeInsets.only(
-                                                right: 10,
-                                                left: 10,
-                                                top: 5,
-                                                bottom: 5),
+                                            contentPadding:
+                                                const EdgeInsets.only(
+                                                    right: 10,
+                                                    left: 10,
+                                                    top: 5,
+                                                    bottom: 5),
                                             leading: Container(
                                               width: 50,
                                               height: 50,
@@ -389,14 +386,14 @@ class _ExpenseScreenState extends State<ExpenseScreen> {
                                                 ),
                                                 Text(
                                                   '-\$${expense['amount']}',
-                                                  style: TextStyle(
+                                                  style: const TextStyle(
                                                       color: Colors.red,
                                                       fontWeight:
                                                           FontWeight.bold),
                                                 ),
                                               ],
                                             ),
-                                            trailing: Icon(
+                                            trailing: const Icon(
                                               Icons.arrow_forward_ios,
                                               size: 18,
                                               color: Colors.black,
@@ -420,18 +417,18 @@ class _ExpenseScreenState extends State<ExpenseScreen> {
             padding: const EdgeInsets.only(left: 10, right: 10, bottom: 20),
             child: ElevatedButton(
               style: ElevatedButton.styleFrom(
-                  backgroundColor: Color(0xFF073063),
+                  backgroundColor: const Color(0xFF073063),
                   shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(10))),
               onPressed: () async {
-                await Get.to(() => AddExpense());
+                await Get.to(() => const AddExpense());
                 _fetchExpense();
               },
               child: Center(
                 child: Container(
                   width: double.infinity,
                   height: 50,
-                  child: Center(
+                  child: const Center(
                     child: Text(
                       'Add Expense',
                       style: TextStyle(color: Colors.white),
