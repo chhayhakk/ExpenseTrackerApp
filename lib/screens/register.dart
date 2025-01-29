@@ -91,10 +91,13 @@ class _RegisterState extends State<Register> {
                         TextFormField(
                           validator: (value) {
                             if (value == null || value.isEmpty) {
-                              return 'Username';
+                              return 'Username is required';
                             }
                             if (value.length < 6) {
                               return 'Username must have at least 6 characters';
+                            }
+                            if (value.length > 20) {
+                              return 'Username exceeds limit characters';
                             }
                             return null;
                           },
@@ -119,7 +122,7 @@ class _RegisterState extends State<Register> {
                         TextFormField(
                           validator: (value) {
                             if (value == null || value.isEmpty) {
-                              return 'Password is require';
+                              return 'Password is required';
                             }
                             if (value.length < 6) {
                               return 'Password must be at least 6 character';
